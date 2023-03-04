@@ -3,17 +3,17 @@ import re
 
 import cv2
 
-from configuration import IMAGES_FOLDER
+from configuration import HOUSE_OF_REPRESENTATIVES_IMAGES_FOLDER
 
 female = 'female'
 male = 'male'
 
-for image_filename in os.listdir(IMAGES_FOLDER):
+for image_filename in os.listdir(HOUSE_OF_REPRESENTATIVES_IMAGES_FOLDER):
     if re.match(f"^({female}|{male}).*", image_filename):
         print(f"Skipping {image_filename}")
         continue
 
-    imagePath = os.path.join(IMAGES_FOLDER, image_filename)
+    imagePath = os.path.join(HOUSE_OF_REPRESENTATIVES_IMAGES_FOLDER, image_filename)
     image = cv2.imread(imagePath)
 
     cv2.imshow(image_filename, image)
@@ -26,4 +26,4 @@ for image_filename in os.listdir(IMAGES_FOLDER):
     else:
         break
 
-    os.rename(imagePath, os.path.join(IMAGES_FOLDER, f"{gender}-{image_filename}"))
+    os.rename(imagePath, os.path.join(HOUSE_OF_REPRESENTATIVES_IMAGES_FOLDER, f"{gender}-{image_filename}"))
